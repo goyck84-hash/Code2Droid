@@ -9,6 +9,12 @@ import android.widget.*;
 
 public class MainActivity extends Activity {
 
+static {
+    System.loadLibrary("native-lib");
+}
+
+public native String getEngineStatus();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,9 +63,7 @@ public class MainActivity extends Activity {
                     || code.getText().toString().trim().isEmpty()) {
                 status.setText("Please enter name and C++ code!");
             } else {
-                status.setText(
-                    "Code received! Compiler connection is next."
-                );
+                status.setText(getEngineStatus());
             }
         });
 
